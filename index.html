@@ -3,32 +3,83 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>mt2026</title>
+    <title>mt2026 AR</title>
+    <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
+    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
     <style>
-      body { font-family: system-ui, sans-serif; margin: 0; padding: 2rem; background: #f5f5f5; color: #111; }
-      main { max-width: 760px; margin: 0 auto; background: #fff; padding: 2rem; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,.08); }
-      a { color: #0366d6; text-decoration: none; }
-      a:hover { text-decoration: underline; }
-      pre { background: #f0f0f0; padding: 1rem; overflow-x: auto; }
+      body { margin: 0; min-height: 100vh; font-family: system-ui, sans-serif; background: #111; color: #f5f5f5; }
+      .topbar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.5rem; padding: 1rem 1.5rem; background: rgba(0,0,0,.85); position: sticky; top: 0; z-index: 10; }
+      .topbar h1 { margin: 0; font-size: 1.2rem; }
+      .buttons { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+      button { border: none; border-radius: 999px; padding: 0.7rem 1rem; font-size: 0.95rem; cursor: pointer; background: #0f62fe; color: #fff; transition: transform .15s ease, background .15s ease; }
+      button:hover { transform: translateY(-1px); background: #0053c7; }
+      .notice { padding: 1rem 1.5rem; background: rgba(255,255,255,.08); border-top: 1px solid rgba(255,255,255,.08); }
+      .notice strong { color: #f0b429; }
+      .scene-wrap { position: relative; width: 100%; height: calc(100vh - 130px); min-height: 520px; }
+      a-scene { width: 100%; height: 100%; }
+      .help { max-width: 980px; margin: 0 auto; padding: 1rem 1.5rem; font-size: 0.95rem; line-height: 1.6; }
+      .help a { color: #7fd2ff; }
+      .hidden { display: none; }
+      pre { background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.08); padding: 0.8rem 1rem; overflow-x: auto; border-radius: 0.75rem; }
     </style>
   </head>
   <body>
-    <main>
-      <h1>mt2026</h1>
-      <p>Este repositório é uma experiência em realidade aumentada usando <strong>AR.js</strong> e <strong>A-Frame</strong>.</p>
-      <p>Para publicar como site no GitHub Pages, basta ativar a página do GitHub e usar este arquivo <code>index.html</code> como raiz.</p>
-      <h2>Passos para habilitar o site</h2>
-      <ol>
-        <li>Faça commit e push das alterações para o branch <code>main</code>.</li>
-        <li>Acesse <a href="https://github.com/Samuellps00/mt2026/settings/pages" target="_blank">Configurações de Pages</a> do repositório.</li>
-        <li>Em "Branch", selecione <strong>main</strong> e em "Pasta" selecione <strong>/ (root)</strong>.</li>
-        <li>Salve e aguarde alguns minutos até o site ficar disponível.</li>
-      </ol>
-      <p>Depois, o site estará disponível em:</p>
+    <div class="topbar">
+      <h1>mt2026 — Experiência AR</h1>
+      <div class="buttons">
+        <button id="modeImage">Imagem + marcador</button>
+        <button id="modeModel">Modelo 3D + marcador</button>
+      </div>
+    </div>
+
+    <div class="notice">
+      <strong>Importante:</strong> permita o uso da câmera no navegador. Aponte para o marcador <strong>hiro</strong> para ver a cena.
+    </div>
+
+    <div class="scene-wrap">
+      <a-scene vr-mode-ui="enabled: false" embedded arjs="debugUIEnabled: false; sourceType: webcam; detectionMode: mono_and_matrix;">
+        <a-assets>
+          <img id="flagImage" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Flag_of_Brazil.svg/320px-Flag_of_Brazil.svg.png" crossorigin="anonymous" />
+          <a-asset-item id="modelGlb" src="https://cdn.jsdelivr.net/gh/KhronosGroup/glTF-Sample-Models@master/2.0/Avocado/glTF-Binary/Avocado.glb"></a-asset-item>
+        </a-assets>
+
+        <a-marker preset="hiro" id="marker">
+          <a-entity id="markerContent"></a-entity>
+        </a-marker>
+        <a-entity camera></a-entity>
+      </a-scene>
+    </div>
+
+    <div class="help">
+      <p>Este site converteu o conteúdo do <code>README.md</code> em uma página AR funcional. Você pode alternar entre duas experiências:</p>
+      <ul>
+        <li><strong>Imagem + marcador</strong>: exibe uma bandeira 2D sobre o marcador hiro.</li>
+        <li><strong>Modelo 3D + marcador</strong>: exibe um modelo glTF sobre o mesmo marcador.</li>
+      </ul>
+      <p>Se quiser, posso ajustar ainda mais para usar arquivos locais como <code>pattern-marcador.patt</code>, <code>bandeira.png</code> ou <code>macaca.glb</code>.</p>
+      <p>Abra esta página no navegador com câmera e aponte para o marcador <strong>hiro</strong>. Você pode encontrar o marcador aqui:</p>
+      <pre>https://raw.githubusercontent.com/AR-js-org/AR.js/master/three.js/examples/marker-training/examples/pattern-files/pattern-hiro.patt</pre>
+      <p>Se estiver usando GitHub Pages, o endereço será:</p>
       <pre>https://samuellps00.github.io/mt2026/</pre>
-      <h2>Observações</h2>
-      <p>O README atual contém código de exemplo para experiências de AR, mas o site precisa de arquivos adicionais (como imagens e modelos 3D) para funcionar completamente.</p>
-      <p>Se quiser, posso também ajudar a criar uma versão completa do site com as cenas de AR quando você adicionar os arquivos de recurso.</p>
-    </main>
+    </div>
+
+    <script>
+      const markerContent = document.getElementById('markerContent');
+      const modeImage = document.getElementById('modeImage');
+      const modeModel = document.getElementById('modeModel');
+
+      const imageHtml = '<a-image src="#flagImage" position="0 0.1 0" rotation="-90 0 0" width="1.5" height="1"></a-image>';
+      const modelHtml = '<a-entity gltf-model="#modelGlb" position="0 0 0" rotation="-90 0 0" scale="0.5 0.5 0.5"></a-entity>';
+
+      function setScene(mode) {
+        markerContent.innerHTML = mode === 'model' ? modelHtml : imageHtml;
+        modeImage.style.opacity = mode === 'image' ? '1' : '0.7';
+        modeModel.style.opacity = mode === 'model' ? '1' : '0.7';
+      }
+
+      modeImage.addEventListener('click', () => setScene('image'));
+      modeModel.addEventListener('click', () => setScene('model'));
+      setScene('image');
+    </script>
   </body>
 </html>

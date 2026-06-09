@@ -1,71 +1,26 @@
-# mt2026<html>
-  <head>
-    <title>Quarta experiência de RA usando AR.js e A-frame com imagem e marcador .patt</title>
-    <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
-    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
-  </head>
-  <body style="margin: 0px; overflow: hidden">
-    <a-scene vr-mode-ui="enabled: false" embedded arjs="debugUIEnabled: false">
-      <a-marker type="pattern" url="pattern-marcador.patt">
-        <a-image src="bandeira.png" position="0 0 0" rotation="-90 0 0" width="1.5" height="1"></a-image>
-      </a-marker>
-      <a-entity camera></a-entity>
-    </a-scene>
-  </body>
-</html>
+# mt2026
 
-<html>
-  <head>
-    <title>Terceira experiência de RA usando AR.js e A-frame com modelo 3D e marcador hiro</title>
-    <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
-    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
-  </head>
-  <body style="margin: 0px; overflow: hidden">
-    <a-scene vr-mode-ui="enabled: false" embedded arjs="debugUIEnabled: false">
-      <a-assets>
-        <a-asset-item id="suzy" src="macaca.glb"></a-asset-item>
-      </a-assets>
-      <a-marker preset="hiro">
-        <a-entity 
-          id="modelo3d" 
-          position="0 0 0" 
-          rotation="90 0 0" 
-          scale="0.5 0.5 0.5"
-          gltf-model="#suzy">          
-        </a-entity>
-      </a-marker>
-      <a-entity camera></a-entity>
-    </a-scene>
-  </body>
-</html>
+Este repositório agora contém uma página de realidade aumentada em `index.html`.
 
-<!-- <html>
-  <head>
-    <title>Segunda experiência de RA usando AR.js e A-frame com imagem e marcador hiro</title>
-    <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
-    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
-  </head>
-  <body style="margin: 0px; overflow: hidden">
-    <a-scene vr-mode-ui="enabled: false" embedded arjs="debugUIEnabled: false">
-      <a-marker preset="hiro">
-        <a-image src="bandeira.png" position="0 0 0" rotation="-90 0 0" width="1.5" height="1"></a-image>
-      </a-marker>
-      <a-entity camera></a-entity>
-    </a-scene>
-  </body>
-</html> -->
+## O que está disponível
 
+- **Imagem + marcador**: exibe uma imagem de bandeira sobre o marcador hiro.
+- **Modelo 3D + marcador**: exibe um modelo glTF sobre o marcador hiro.
 
-<!-- <html>
-  <head>
-    <title>Experiência de RA usando AR.js e A-frame com modelo 3d simples e marcador hiro</title>
-    <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
-    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
-  </head>
-  <body style="margin: 0px; overflow: hidden">
-    <a-scene vr-mode-ui="enabled: false" embedded arjs="debugUIEnabled: false">
-      <a-marker preset="hiro">
-        <a-box position="0 0.5 0" material="color: green"></a-box>
-      </a-marker>
-      <a-entity camera></a-entity>
-    </a-scene>
+## Como usar
+
+1. Abra `index.html` em um navegador que suporte câmera.
+2. Permita o acesso à câmera.
+3. Aponte para o marcador **hiro**.
+
+## Deploy
+
+Para publicar no GitHub Pages, ative Pages no branch `main` e use o diretório raiz.
+
+Site provável:
+
+`https://samuellps00.github.io/mt2026/`
+
+## Observação
+
+As cenas usam recursos remotos para funcionar imediatamente. Se você quiser, posso ajustar o site para usar arquivos locais como `pattern-marcador.patt`, `bandeira.png` e `macaca.glb`.
